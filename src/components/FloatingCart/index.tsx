@@ -24,19 +24,23 @@ const FloatingCart: React.FC = () => {
   const navigation = useNavigation();
 
   const cartTotal = useMemo(() => {
-    const cartValue = products.reduce((acmulator, product) => {
-      return (acmulator += product.price * product.quantity);
+    const total = products.reduce((acmulator, product) => {
+      const productsSubtotal = product.price * product.quantity;
+
+      return acmulator + productsSubtotal;
     }, 0);
 
-    return formatValue(cartValue);
+    return formatValue(total);
   }, [products]);
 
   const totalItensInCart = useMemo(() => {
-    const totalQuantity = products.reduce((acmulator, item) => {
-      return (acmulator += item.quantity);
+    const total = products.reduce((acmulator, product) => {
+      const productsQuantity = product.quantity;
+
+      return acmulator + productsQuantity;
     }, 0);
 
-    return totalQuantity;
+    return total;
   }, [products]);
 
   return (
